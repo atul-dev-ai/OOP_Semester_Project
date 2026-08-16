@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/fragments :: head('Publish Notices')}"></head>
+<body>
+<nav th:replace="~{fragments/fragments :: admin-navbar}"></nav>
+
+<div class="container">
+    <div class="glass-card mb-4">
+        <h3 class="fw-bold">Publish New Notice</h3>
+        <form action="/admin/notices" method="post" class="mt-3">
+            <div class="row g-3">
+                <div class="col-md-8">
+                    <label class="form-label">Notice Title</label>
+                    <input type="text" name="title" class="form-control" required>
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label">For Club</label>
+                    <select name="clubId" class="form-select" required>
+                        <option value="">Select a Club</option>
+                        <option th:each="club : ${clubs}" th:value="${club.id}" th:text="${club.clubName}"></option>
+                    </select>
+                </div>
+                <div class="col-md-12">
+                    <label class="form-label">Notice Details</label>
+                    <textarea name="description" class="form-control" rows="4" required></textarea>
+                </div>
+                <div class="col-12 mt-3">
+                    <button type="submit" class="btn btn-info text-dark fw-bold">Publish Notice</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <div class="glass-card">
+        <h3 class="fw-bold mb-3">Published Notices</h3>
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Club</th>
+                        <th>Title</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="notice : ${notices}">
+                        <td th:text="${#temporals.format(notice.publishDate, 'dd MMM yyyy')}"></td>
+                        <td th:text="${notice.club.clubName}" class="fw-bold"></td>
+                        <td th:text="${notice.title}" class="text-info fw-bold"></td>
+                    </tr>
+                    <tr th:if="${#lists.isEmpty(notices)}">
+                        <td colspan="3" class="text-center text-muted">No notices found.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div th:replace="~{fragments/fragments :: scripts}"></div>
+</body>
+</html>

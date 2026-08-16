@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/fragments :: head('Manage Clubs')}"></head>
+<body>
+<nav th:replace="~{fragments/fragments :: admin-navbar}"></nav>
+
+<div class="container">
+    <div class="glass-card mb-4">
+        <h3 class="fw-bold">Create New Club</h3>
+        <form action="/admin/clubs" method="post" class="mt-3">
+            <div class="row g-3">
+                <div class="col-md-6">
+                    <input type="text" name="clubName" class="form-control" placeholder="Club Name" required>
+                </div>
+                <div class="col-md-6">
+                    <input type="text" name="category" class="form-control" placeholder="Category (e.g. Technology, Arts)" required>
+                </div>
+                <div class="col-md-6">
+                    <input type="text" name="presidentName" class="form-control" placeholder="President Name" required>
+                </div>
+                <div class="col-md-12">
+                    <textarea name="description" class="form-control" rows="3" placeholder="Club Description" required></textarea>
+                </div>
+                <div class="col-12">
+                    <button type="submit" class="btn btn-primary fw-bold">Create Club</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <div class="glass-card">
+        <h3 class="fw-bold mb-3">All Clubs</h3>
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Category</th>
+                        <th>President</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="club : ${clubs}">
+                        <td th:text="${club.id}"></td>
+                        <td th:text="${club.clubName}" class="fw-bold text-primary"></td>
+                        <td th:text="${club.category}"></td>
+                        <td th:text="${club.presidentName}"></td>
+                        <td><span class="badge bg-success" th:text="${club.status}"></span></td>
+                    </tr>
+                    <tr th:if="${#lists.isEmpty(clubs)}">
+                        <td colspan="5" class="text-center text-muted">No clubs found.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div th:replace="~{fragments/fragments :: scripts}"></div>
+</body>
+</html>

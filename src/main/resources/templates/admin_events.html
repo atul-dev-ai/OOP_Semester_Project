@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/fragments :: head('Manage Events')}"></head>
+<body>
+<nav th:replace="~{fragments/fragments :: admin-navbar}"></nav>
+
+<div class="container">
+    <div class="glass-card mb-4">
+        <h3 class="fw-bold">Create New Event</h3>
+        <form action="/admin/events" method="post" class="mt-3">
+            <div class="row g-3">
+                <div class="col-md-4">
+                    <label class="form-label">Event Name</label>
+                    <input type="text" name="eventName" class="form-control" required>
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label">Select Club</label>
+                    <select name="clubId" class="form-select" required>
+                        <option value="">Select a Club</option>
+                        <option th:each="club : ${clubs}" th:value="${club.id}" th:text="${club.clubName}"></option>
+                    </select>
+                </div>
+                <div class="col-md-4">
+                    <label class="form-label">Venue</label>
+                    <input type="text" name="venue" class="form-control" required>
+                </div>
+                
+                <div class="col-md-3">
+                    <label class="form-label">Event Date</label>
+                    <input type="date" name="eventDate" class="form-control" required>
+                </div>
+                <div class="col-md-3">
+                    <label class="form-label">Event Time</label>
+                    <input type="time" name="eventTime" class="form-control" required>
+                </div>
+                <div class="col-md-3">
+                    <label class="form-label">Reg. Deadline</label>
+                    <input type="date" name="registrationDeadline" class="form-control">
+                </div>
+                <div class="col-md-3">
+                    <label class="form-label">Max Participants</label>
+                    <input type="number" name="maximumParticipants" class="form-control">
+                </div>
+                
+                <div class="col-md-12">
+                    <label class="form-label">Description</label>
+                    <textarea name="description" class="form-control" rows="2" required></textarea>
+                </div>
+                
+                <div class="col-12 mt-4">
+                    <button type="submit" class="btn btn-warning text-dark fw-bold">Create Event</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <div class="glass-card">
+        <h3 class="fw-bold mb-3">All Events</h3>
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Event Name</th>
+                        <th>Club</th>
+                        <th>Date & Time</th>
+                        <th>Venue</th>
+                        <th>Reg. Deadline</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="ev : ${events}">
+                        <td th:text="${ev.eventName}" class="fw-bold text-warning"></td>
+                        <td th:text="${ev.club.clubName}"></td>
+                        <td th:text="${ev.eventDate + ' ' + ev.eventTime}"></td>
+                        <td th:text="${ev.venue}"></td>
+                        <td th:text="${ev.registrationDeadline}"></td>
+                    </tr>
+                    <tr th:if="${#lists.isEmpty(events)}">
+                        <td colspan="5" class="text-center text-muted">No events found.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div th:replace="~{fragments/fragments :: scripts}"></div>
+</body>
+</html>

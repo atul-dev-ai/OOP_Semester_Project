@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/fragments :: head('Discover Clubs')}"></head>
+<body>
+<nav th:replace="~{fragments/fragments :: student-navbar}"></nav>
+
+<div class="container">
+    <div class="glass-card mb-4">
+        <h3 class="fw-bold mb-3">All Clubs</h3>
+        <div class="row g-4">
+            <div th:each="club : ${clubs}" class="col-md-4">
+                <div class="glass-card h-100">
+                    <h4 th:text="${club.clubName}" class="text-primary fw-bold"></h4>
+                    <span class="badge bg-secondary mb-2" th:text="${club.category}"></span>
+                    <p class="text-muted text-truncate" th:text="${club.description}"></p>
+                    <a th:href="@{/student/clubs/{id}(id=${club.id})}" class="btn btn-outline-primary btn-sm w-100 mt-2">View Details</a>
+                </div>
+            </div>
+            <div th:if="${#lists.isEmpty(clubs)}" class="col-12 text-center text-muted">
+                No clubs found.
+            </div>
+        </div>
+    </div>
+</div>
+
+<div th:replace="~{fragments/fragments :: scripts}"></div>
+</body>
+</html>

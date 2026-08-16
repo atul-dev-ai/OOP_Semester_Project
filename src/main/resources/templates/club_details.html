@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/fragments :: head('Club Details')}"></head>
+<body>
+<nav th:replace="~{fragments/fragments :: student-navbar}"></nav>
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="glass-card">
+                <div th:if="${message}" class="alert alert-success" th:text="${message}"></div>
+                <div th:if="${error}" class="alert alert-danger" th:text="${error}"></div>
+                
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <h2 th:text="${club.clubName}" class="fw-bold text-primary mb-0"></h2>
+                    <span class="badge bg-secondary" th:text="${club.category}"></span>
+                </div>
+                
+                <h5 class="text-muted">President: <span class="text-white" th:text="${club.presidentName}"></span></h5>
+                <hr class="border-secondary my-4">
+                
+                <h5 class="fw-bold">About the Club</h5>
+                <p th:text="${club.description}" style="line-height: 1.8;"></p>
+                
+                <div class="mt-5 text-center">
+                    <form th:action="@{/student/clubs/{id}/apply(id=${club.id})}" method="post">
+                        <button type="submit" class="btn btn-primary px-5 py-2 fw-bold" th:disabled="${club.status != 'ACTIVE'}">Apply for Membership</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div th:replace="~{fragments/fragments :: scripts}"></div>
+</body>
+</html>

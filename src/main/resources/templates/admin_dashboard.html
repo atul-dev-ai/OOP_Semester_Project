@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/fragments :: head('Admin Dashboard')}"></head>
+<body>
+<nav th:replace="~{fragments/fragments :: admin-navbar}"></nav>
+
+<div class="container">
+    <div class="glass-card mb-4">
+        <h2 class="fw-bold">Welcome, <span th:text="${user.name}"></span>!</h2>
+        <p class="text-muted">Manage all aspects of the Student Club Management System from here.</p>
+    </div>
+
+    <div class="row g-4">
+        <div class="col-md-3">
+            <div class="glass-card text-center h-100">
+                <h3 class="text-primary">Clubs</h3>
+                <a href="/admin/clubs" class="btn btn-primary mt-3">Manage</a>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="glass-card text-center h-100">
+                <h3 class="text-success">Memberships</h3>
+                <a href="/admin/memberships" class="btn btn-success mt-3">View Requests</a>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="glass-card text-center h-100">
+                <h3 class="text-warning">Events</h3>
+                <a href="/admin/events" class="btn btn-warning mt-3 text-dark">Manage</a>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="glass-card text-center h-100">
+                <h3 class="text-info">Notices</h3>
+                <a href="/admin/notices" class="btn btn-info mt-3 text-dark">Publish</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div th:replace="~{fragments/fragments :: scripts}"></div>
+</body>
+</html>
