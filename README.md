@@ -50,7 +50,7 @@ Here are some glimpses of the system in action:
 1. **Prerequisites:** Make sure you have **Java 21** installed on your system.
 2. **Clone the Repository:**
    ```bash
-   git clone <your-repo-link>
+   git clone https://github.com/atul-dev-ai/OOP_Semester_Project.git
    cd OOP_Semester_Project/project
    ```
 3. **Run the Application:**
