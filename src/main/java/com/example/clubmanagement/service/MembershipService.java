@@ -64,4 +64,8 @@ public class MembershipService {
     public List<Membership> getMyMemberships(Long studentId) {
         return membershipRepository.findByStudentId(studentId);
     }
+    
+    public Optional<Membership> getMembershipStatus(Long studentId, Long clubId) {
+        return membershipRepository.findByStudentIdAndClubId(studentId, clubId);
+    }
 }

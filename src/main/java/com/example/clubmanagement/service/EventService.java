@@ -73,4 +73,8 @@ public class EventService {
     public List<EventRegistration> getMyEvents(Long studentId) {
         return registrationRepository.findByStudentId(studentId);
     }
+    
+    public List<Event> getEventsByClubId(Long clubId) {
+        return eventRepository.findByClubId(clubId);
+    }
 }

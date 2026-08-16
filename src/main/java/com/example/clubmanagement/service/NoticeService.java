@@ -28,4 +28,8 @@ public class NoticeService {
     public List<Notice> getAllNotices() {
         return noticeRepository.findAll();
     }
+    
+    public List<Notice> getNoticesByClubId(Long clubId) {
+        return noticeRepository.findByClubId(clubId);
+    }
 }

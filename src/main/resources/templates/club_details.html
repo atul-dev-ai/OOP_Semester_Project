@@ -23,9 +23,52 @@
                 <p th:text="${club.description}" style="line-height: 1.8;"></p>
                 
                 <div class="mt-5 text-center">
-                    <form th:action="@{/student/clubs/{id}/apply(id=${club.id})}" method="post">
+                    <form th:if="${membershipStatus == 'NONE'}" th:action="@{/student/clubs/{id}/apply(id=${club.id})}" method="post">
                         <button type="submit" class="btn btn-primary px-5 py-2 fw-bold" th:disabled="${club.status != 'ACTIVE'}">Apply for Membership</button>
                     </form>
+                    
+                    <div th:if="${membershipStatus == 'PENDING'}" class="alert alert-warning fw-bold">
+                        Your membership request is pending approval from the club admin.
+                    </div>
+                    
+                    <div th:if="${membershipStatus == 'REJECTED'}" class="alert alert-danger fw-bold">
+                        Your membership request was rejected.
+                    </div>
+                </div>
+                
+                <!-- If APPROVED, show club inner details -->
+                <div th:if="${membershipStatus == 'APPROVED'}" class="mt-5">
+                    <hr class="border-secondary my-4">
+                    <h3 class="fw-bold text-success mb-4">Inside the Club</h3>
+                    
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h5 class="fw-bold text-info">Latest Notices</h5>
+                            <div class="list-group list-group-flush bg-transparent">
+                                <div th:each="notice : ${clubNotices}" class="list-group-item bg-transparent border-secondary py-2">
+                                    <strong class="text-white" th:text="${notice.title}"></strong>
+                                    <p class="mb-0 small text-muted" th:text="${notice.description}"></p>
+                                </div>
+                                <div th:if="${#lists.isEmpty(clubNotices)}" class="text-muted small">No notices available.</div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-6">
+                            <h5 class="fw-bold text-warning">Upcoming Events</h5>
+                            <div class="list-group list-group-flush bg-transparent">
+                                <div th:each="ev : ${clubEvents}" class="list-group-item bg-transparent border-secondary py-2">
+                                    <strong class="text-white" th:text="${ev.eventName}"></strong>
+                                    <p class="mb-0 small text-muted">
+                                        📍 <span th:text="${ev.venue}"></span> | 📅 <span th:text="${ev.eventDate}"></span>
+                                    </p>
+                                    <form th:action="@{/student/events/{id}/register(id=${ev.id})}" method="post" class="mt-1">
+                                        <button type="submit" class="btn btn-sm btn-outline-warning">Register</button>
+                                    </form>
+                                </div>
+                                <div th:if="${#lists.isEmpty(clubEvents)}" class="text-muted small">No upcoming events.</div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
