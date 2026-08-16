@@ -36,6 +36,7 @@ public class MembershipController {
     public String viewPendingRequests(HttpSession session, Model model) {
         if (!isAdmin(session)) return "redirect:/login";
         model.addAttribute("requests", membershipService.getPendingRequests());
+        model.addAttribute("approvedMemberships", membershipService.getApprovedMemberships());
         return "admin_memberships";
     }
 

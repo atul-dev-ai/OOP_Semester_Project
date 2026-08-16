@@ -61,6 +61,10 @@ public class MembershipService {
         return membershipRepository.findByStatus(MembershipStatus.PENDING);
     }
     
+    public List<Membership> getApprovedMemberships() {
+        return membershipRepository.findByStatus(MembershipStatus.APPROVED);
+    }
+    
     public List<Membership> getMyMemberships(Long studentId) {
         return membershipRepository.findByStudentId(studentId);
     }

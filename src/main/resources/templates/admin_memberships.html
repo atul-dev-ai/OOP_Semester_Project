@@ -40,6 +40,33 @@
             </table>
         </div>
     </div>
+    
+    <div class="glass-card mt-5">
+        <h3 class="fw-bold mb-4 text-success">Approved Memberships</h3>
+        <div class="table-responsive">
+            <table class="table table-hover align-middle">
+                <thead>
+                    <tr>
+                        <th>Date Applied</th>
+                        <th>Student Name</th>
+                        <th>Student ID</th>
+                        <th>Club</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="mem : ${approvedMemberships}">
+                        <td th:text="${#temporals.format(mem.applicationDate, 'dd-MM-yyyy HH:mm')}"></td>
+                        <td th:text="${mem.student.name}" class="fw-bold"></td>
+                        <td th:text="${mem.student.studentId}"></td>
+                        <td th:text="${mem.club.clubName}" class="text-success fw-bold"></td>
+                    </tr>
+                    <tr th:if="${#lists.isEmpty(approvedMemberships)}">
+                        <td colspan="4" class="text-center text-muted">No approved memberships.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
 </div>
 
 <div th:replace="~{fragments/fragments :: scripts}"></div>
