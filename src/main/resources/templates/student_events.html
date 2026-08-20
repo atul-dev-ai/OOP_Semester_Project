@@ -22,7 +22,10 @@
                         <li>⚠️ Deadline: <span th:text="${ev.registrationDeadline}"></span></li>
                     </ul>
                     <form th:action="@{/student/events/{id}/register(id=${ev.id})}" method="post">
-                        <button type="submit" class="btn btn-outline-success btn-sm w-100 mt-2 fw-bold">Register Now</button>
+                        <button type="submit" class="btn btn-outline-success btn-sm w-100 mt-2 fw-bold"
+                                th:if="${!#lists.contains(registeredEventIds, ev.id)}">Register Now</button>
+                        <button type="button" class="btn btn-success btn-sm w-100 mt-2 fw-bold"
+                                th:if="${#lists.contains(registeredEventIds, ev.id)}" disabled>Already Registered</button>
                     </form>
                 </div>
             </div>
