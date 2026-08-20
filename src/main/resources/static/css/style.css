@@ -1,13 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap');
 
 :root {
-    --bg-color: #0f172a;
-    --text-color: #f8fafc;
-    --glass-bg: rgba(15, 23, 42, 0.4);
-    --glass-border: rgba(255, 255, 255, 0.08);
-    --primary: #3b82f6;
-    --primary-hover: #2563eb;
-    --accent: #a855f7;
+    --bg-color: #fdfcfb;
+    --text-color: #1e293b;
+    --glass-bg: rgba(255, 255, 255, 0.65);
+    --glass-border: rgba(255, 255, 255, 0.5);
+    --primary: #10b981; /* Emerald Green */
+    --primary-hover: #059669;
+    --accent: #f472b6; /* Pink */
 }
 
 body {
@@ -15,13 +15,13 @@ body {
     color: var(--text-color);
     font-family: 'Outfit', sans-serif;
     min-height: 100vh;
-    /* Subtle grid texture + dark modern gradient */
+    /* Soft light gradient with grid texture */
     background-image: 
-        radial-gradient(at 0% 0%, hsla(253,16%,7%,1) 0, transparent 50%), 
-        radial-gradient(at 50% 0%, hsla(225,39%,30%,0.2) 0, transparent 50%), 
-        radial-gradient(at 100% 0%, hsla(339,49%,30%,0.2) 0, transparent 50%),
-        linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+        radial-gradient(at 0% 0%, hsla(152, 68%, 92%, 1) 0, transparent 50%), 
+        radial-gradient(at 50% 0%, hsla(328, 85%, 94%, 1) 0, transparent 50%), 
+        radial-gradient(at 100% 0%, hsla(152, 68%, 92%, 1) 0, transparent 50%),
+        linear-gradient(rgba(0,0,0,0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,0,0,0.02) 1px, transparent 1px);
     background-size: 100% 100%, 100% 100%, 100% 100%, 30px 30px, 30px 30px;
     background-attachment: fixed;
 }
@@ -34,18 +34,18 @@ body {
     border: 1px solid var(--glass-border);
     border-radius: 1.25rem;
     padding: 2.5rem;
-    /* Layered soft shadows for depth */
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 
-                0 20px 25px -5px rgba(0, 0, 0, 0.4),
-                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    /* Soft shadows suitable for light theme */
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 
+                0 20px 25px -5px rgba(0, 0, 0, 0.05),
+                inset 0 1px 0 rgba(255, 255, 255, 0.8);
     transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .glass-card:hover {
     transform: translateY(-8px);
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.4), 
-                0 25px 30px -5px rgba(0, 0, 0, 0.5),
-                inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    box-shadow: 0 10px 15px -3px rgba(16, 185, 129, 0.1), 
+                0 25px 30px -5px rgba(244, 114, 182, 0.15),
+                inset 0 1px 0 rgba(255, 255, 255, 0.9);
 }
 
 /* Buttons with modern gradient interpolation */
@@ -55,67 +55,70 @@ body {
     border-radius: 0.75rem;
     font-weight: 600;
     letter-spacing: 0.5px;
+    color: white;
     transition: transform 0.2s, box-shadow 0.2s;
-    box-shadow: 0 4px 15px rgba(168, 85, 247, 0.3);
+    box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
 }
 
 .btn-primary:hover {
+    color: white;
     transform: translateY(-2px) scale(1.02);
-    box-shadow: 0 8px 25px rgba(168, 85, 247, 0.5);
+    box-shadow: 0 8px 25px rgba(244, 114, 182, 0.4);
 }
 
 /* Navbar */
 .navbar {
-    background: rgba(15, 23, 42, 0.7) !important;
+    background: rgba(255, 255, 255, 0.7) !important;
     backdrop-filter: blur(20px);
-    border-bottom: 1px solid var(--glass-border);
+    border-bottom: 1px solid rgba(0,0,0,0.05);
     padding: 1rem 0;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.03);
 }
 
 .navbar-brand {
     font-family: 'Outfit', sans-serif;
     font-weight: 700;
     font-size: 1.6rem;
-    background: linear-gradient(to right in oklch, #60a5fa, #c084fc);
+    background: linear-gradient(to right in oklch, #10b981, #ec4899);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     transition: filter 0.3s;
 }
 
 .navbar-brand:hover {
-    filter: drop-shadow(0 0 10px rgba(192, 132, 252, 0.5));
+    filter: drop-shadow(0 0 10px rgba(236, 72, 153, 0.3));
 }
 
 .nav-link {
-    color: var(--text-color) !important;
-    font-weight: 400;
+    color: #475569 !important;
+    font-weight: 500;
     transition: color 0.2s, transform 0.2s;
 }
 
 .nav-link:hover {
-    color: #c084fc !important;
+    color: #ec4899 !important;
     transform: translateY(-2px);
 }
 
 /* Forms */
 .form-control, .form-select {
-    background-color: rgba(15, 23, 42, 0.5) !important;
-    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    background-color: rgba(255, 255, 255, 0.8) !important;
+    border: 1px solid rgba(0, 0, 0, 0.1) !important;
     color: var(--text-color) !important;
     border-radius: 0.75rem;
     padding: 0.75rem 1rem;
-    transition: border-color 0.3s, box-shadow 0.3s;
+    transition: border-color 0.3s, box-shadow 0.3s, background-color 0.3s;
 }
 
 .form-control:focus, .form-select:focus {
-    background-color: rgba(15, 23, 42, 0.8) !important;
-    border-color: #a855f7 !important;
-    box-shadow: 0 0 0 4px rgba(168, 85, 247, 0.25) !important;
+    background-color: #ffffff !important;
+    border-color: #f472b6 !important;
+    box-shadow: 0 0 0 4px rgba(244, 114, 182, 0.15) !important;
 }
 
 ::placeholder {
     color: #94a3b8 !important;
-    opacity: 0.7;
+    opacity: 0.8;
 }
 
 /* Tables */
@@ -128,12 +131,25 @@ th {
     text-transform: uppercase;
     font-size: 0.85rem;
     letter-spacing: 1px;
-    color: #cbd5e1 !important;
-    border-color: rgba(255, 255, 255, 0.05) !important;
+    color: #64748b !important;
+    border-color: rgba(0, 0, 0, 0.05) !important;
 }
 
 td {
-    border-color: rgba(255, 255, 255, 0.05) !important;
+    border-color: rgba(0, 0, 0, 0.05) !important;
     background: transparent !important;
     vertical-align: middle;
 }
+
+/* Fix some specific text colors that were designed for dark mode */
+.text-white {
+    color: var(--text-color) !important;
+}
+.text-info, .text-warning, .text-success, .text-danger {
+    /* Slightly adjust Bootstrap's native utilities for the light theme */
+    font-weight: 600;
+}
+.text-success { color: #10b981 !important; }
+.text-info { color: #0ea5e9 !important; }
+.text-warning { color: #f59e0b !important; }
+.text-danger { color: #ef4444 !important; }
