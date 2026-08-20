@@ -28,32 +28,35 @@
         </form>
     </div>
 
-    <div class="glass-card">
-        <h3 class="fw-bold mb-3">All Clubs</h3>
-        <div class="table-responsive">
-            <table class="table table-hover">
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Name</th>
-                        <th>Category</th>
-                        <th>President</th>
-                        <th>Status</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr th:each="club : ${clubs}">
-                        <td th:text="${club.id}"></td>
-                        <td th:text="${club.clubName}" class="fw-bold text-primary"></td>
-                        <td th:text="${club.category}"></td>
-                        <td th:text="${club.presidentName}"></td>
-                        <td><span class="badge bg-success" th:text="${club.status}"></span></td>
-                    </tr>
-                    <tr th:if="${#lists.isEmpty(clubs)}">
-                        <td colspan="5" class="text-center text-muted">No clubs found.</td>
-                    </tr>
-                </tbody>
-            </table>
+    <h3 class="fw-bold mb-4 mt-5 text-text-color">All Clubs</h3>
+    <div class="row g-4 mb-5">
+        <div class="col-md-6 col-lg-4" th:each="club : ${clubs}">
+            <div class="glass-card h-100 p-4 d-flex flex-column border-0" style="background: rgba(255, 255, 255, 0.45); backdrop-filter: blur(10px);">
+                <div class="d-flex justify-content-between align-items-start mb-3">
+                    <h5 class="fw-bold text-success mb-0" th:text="${club.clubName}"></h5>
+                    <span class="badge bg-primary text-white rounded-pill px-3 py-1 shadow-sm" th:text="${club.status}"></span>
+                </div>
+                <div class="mb-3">
+                    <span class="badge bg-light text-secondary border me-2" style="font-weight: 500;">
+                        <span th:text="${club.category}"></span>
+                    </span>
+                </div>
+                <p class="text-muted small mb-3">
+                    <strong class="text-text-color">President:</strong> <span th:text="${club.presidentName}"></span>
+                </p>
+                <div class="flex-grow-1">
+                    <p class="small text-muted" th:text="${club.description}" style="display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;"></p>
+                </div>
+                <div class="mt-3 pt-3 border-top border-secondary border-opacity-10">
+                    <span class="text-muted" style="font-size: 0.75rem;">Club ID: #<span th:text="${club.id}"></span></span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-12" th:if="${#lists.isEmpty(clubs)}">
+            <div class="glass-card text-center text-muted p-5 border-0">
+                <h5 class="mb-0">No clubs found. Create your first club above!</h5>
+            </div>
         </div>
     </div>
 </div>
