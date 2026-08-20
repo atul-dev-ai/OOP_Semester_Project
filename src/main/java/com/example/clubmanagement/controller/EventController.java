@@ -42,7 +42,16 @@ public class EventController {
     @GetMapping("/student/events")
     public String viewEvents(HttpSession session, Model model) {
         if (!isStudent(session)) return "redirect:/login";
-        model.addAttribute("events", eventService.getAllEvents());
+        User user = (User) session.getAttribute("loggedInUser");
+        
+        java.util.List<Event> allEvents = eventService.getAllEvents();
+        java.util.List<Long> registeredEventIds = eventService.getMyEvents(user.getId())
+                .stream()
+                .map(reg -> reg.getEvent().getId())
+                .toList();
+
+        model.addAttribute("events", allEvents);
+        model.addAttribute("registeredEventIds", registeredEventIds);
         return "student_events";
     }
 
